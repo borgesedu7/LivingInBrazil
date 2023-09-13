@@ -129,35 +129,6 @@ class _TelaInicialWidgetState extends State<TelaInicialWidget> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        context.pushNamed('Tela_Cadastro');
-                      },
-                      text: 'Cadastre-se',
-                      options: FFButtonOptions(
-                        width: 320.0,
-                        height: MediaQuery.sizeOf(context).height * 0.05,
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).info,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleMedium
-                            .override(
-                              fontFamily: 'Readex Pro',
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w500,
-                            ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
                   ].divide(SizedBox(height: 15.0)),
                 ),
               ].divide(SizedBox(height: 1.0)),

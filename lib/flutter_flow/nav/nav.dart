@@ -35,17 +35,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => TelaInicialWidget(),
+      errorBuilder: (context, state) => TelaLoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => TelaInicialWidget(),
-        ),
-        FFRoute(
-          name: 'Tela_Cadastro',
-          path: '/telaCadastro',
-          builder: (context, params) => TelaCadastroWidget(),
+          builder: (context, _) => TelaLoginWidget(),
         ),
         FFRoute(
           name: 'Tela_Inicial',
