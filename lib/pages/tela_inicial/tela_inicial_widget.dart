@@ -34,169 +34,135 @@ class _TelaInicialWidgetState extends State<TelaInicialWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: SafeArea(
-        top: true,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Container(
-              width: MediaQuery.sizeOf(context).width * 1.0,
-              height: MediaQuery.sizeOf(context).height * 1.0,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
-                    child: Row(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: SafeArea(
+          top: true,
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.network(
+                    'https://picsum.photos/seed/461/600',
+                    width: 300.0,
+                    height: 200.0,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            'https://picsum.photos/seed/242/600',
-                            width: 200.0,
-                            height: 100.0,
-                            fit: BoxFit.cover,
-                          ),
+                        Text(
+                          'Bem Vindo!',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w600,
+                              ),
                         ),
-                      ],
+                        Text(
+                          'Deseja criar uma conta, ou já possui uma?',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .titleMedium
+                              .override(
+                                fontFamily: 'Outfit',
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.normal,
+                              ),
+                        ),
+                      ]
+                          .divide(SizedBox(height: 5.0))
+                          .addToEnd(SizedBox(height: 15.0)),
                     ),
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Align(
-                        alignment: AlignmentDirectional(0.00, 0.00),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 400.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 5.0),
-                                child: Text(
-                                  'Bem Vindo!',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 18.0,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Deseja criar uma conta, ou já possui uma?',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
+                    FFButtonWidget(
+                      onPressed: () async {
+                        context.pushNamed('Tela_Login');
+                      },
+                      text: 'Login',
+                      options: FFButtonOptions(
+                        width: 320.0,
+                        height: MediaQuery.sizeOf(context).height * 0.05,
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).tertiary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleMedium.override(
                                   fontFamily: 'Readex Pro',
-                                  color: Color(0xFF767676),
-                                  fontSize: 16.0,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w500,
                                 ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text: 'Login',
-                              options: FFButtonOptions(
-                                width: 300.0,
-                                height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).tertiary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: Colors.white,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                          ],
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
                         ),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                      Padding(
+                    ),
+                    FFButtonWidget(
+                      onPressed: () async {
+                        context.pushNamed('Tela_Cadastro');
+                      },
+                      text: 'Cadastre-se',
+                      options: FFButtonOptions(
+                        width: 320.0,
+                        height: MediaQuery.sizeOf(context).height * 0.05,
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text: 'Cadastre-se',
-                              options: FFButtonOptions(
-                                width: 300.0,
-                                height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).info,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodySmall
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: Color(0xFF767676),
-                                      fontSize: 16.0,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).info,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleMedium
+                            .override(
+                              fontFamily: 'Readex Pro',
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w500,
                             ),
-                          ],
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
                         ),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ].divide(SizedBox(height: 15.0)),
+                ),
+              ].divide(SizedBox(height: 1.0)),
             ),
-          ],
+          ),
         ),
       ),
     );
