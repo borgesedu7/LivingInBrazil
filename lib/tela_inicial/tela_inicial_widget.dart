@@ -54,11 +54,11 @@ class _TelaInicialWidgetState extends State<TelaInicialWidget> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    'https://picsum.photos/seed/461/600',
-                    width: 300.0,
-                    height: 200.0,
-                    fit: BoxFit.cover,
+                  child: Image.asset(
+                    'assets/images/L__1_-removebg-preview_(2).png',
+                    width: MediaQuery.sizeOf(context).width * 0.5,
+                    height: MediaQuery.sizeOf(context).height * 0.25,
+                    fit: BoxFit.contain,
                   ),
                 ),
                 Column(
@@ -121,6 +121,35 @@ class _TelaInicialWidgetState extends State<TelaInicialWidget> {
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.w500,
                                 ),
+                        elevation: 3.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    FFButtonWidget(
+                      onPressed: () async {
+                        context.pushNamed('Tela_Cadastro');
+                      },
+                      text: 'Cadastre-se',
+                      options: FFButtonOptions(
+                        width: 320.0,
+                        height: MediaQuery.sizeOf(context).height * 0.05,
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).info,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleMedium
+                            .override(
+                              fontFamily: 'Readex Pro',
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w500,
+                            ),
                         elevation: 3.0,
                         borderSide: BorderSide(
                           color: Colors.transparent,
