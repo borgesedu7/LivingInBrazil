@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,9 +14,9 @@ class TelaLoginModel extends FlutterFlowModel<TelaLoginWidget> {
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // State field(s) for TextField widget.
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  String? _textController1Validator(BuildContext context, String? val) {
+  TextEditingController? emailTextController;
+  String? Function(BuildContext, String?)? emailTextControllerValidator;
+  String? _emailTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -27,21 +28,21 @@ class TelaLoginModel extends FlutterFlowModel<TelaLoginWidget> {
   }
 
   // State field(s) for TextField widget.
-  TextEditingController? textController2;
+  TextEditingController? passwordTextController;
   late bool passwordVisibility;
-  String? Function(BuildContext, String?)? textController2Validator;
+  String? Function(BuildContext, String?)? passwordTextControllerValidator;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    textController1Validator = _textController1Validator;
+    emailTextControllerValidator = _emailTextControllerValidator;
     passwordVisibility = false;
   }
 
   void dispose() {
     unfocusNode.dispose();
-    textController1?.dispose();
-    textController2?.dispose();
+    emailTextController?.dispose();
+    passwordTextController?.dispose();
   }
 
   /// Action blocks are added here.

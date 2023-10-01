@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "331626457458",
+    "project_id": "living-in-brazil",
+    "storage_bucket": "living-in-brazil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331626457458:android:2a5aabdce90afcaf8715eb",
+        "android_client_info": {
+          "package_name": "com.mycompany.livinginbrazil"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl10u2jx9A1VJ6jaU8lRSA6FhDlHJSDb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

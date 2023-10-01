@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -25,8 +26,8 @@ class _TelaLoginWidgetState extends State<TelaLoginWidget> {
     super.initState();
     _model = createModel(context, () => TelaLoginModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textController2 ??= TextEditingController();
+    _model.emailTextController ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
   }
 
   @override
@@ -38,8 +39,6 @@ class _TelaLoginWidgetState extends State<TelaLoginWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -146,7 +145,7 @@ class _TelaLoginWidgetState extends State<TelaLoginWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               TextFormField(
-                                controller: _model.textController1,
+                                controller: _model.emailTextController,
                                 autofocus: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -214,11 +213,11 @@ class _TelaLoginWidgetState extends State<TelaLoginWidget> {
                                     ),
                                 textAlign: TextAlign.start,
                                 keyboardType: TextInputType.emailAddress,
-                                validator: _model.textController1Validator
+                                validator: _model.emailTextControllerValidator
                                     .asValidator(context),
                               ),
                               TextFormField(
-                                controller: _model.textController2,
+                                controller: _model.passwordTextController,
                                 autofocus: true,
                                 obscureText: !_model.passwordVisibility,
                                 decoration: InputDecoration(
@@ -300,7 +299,8 @@ class _TelaLoginWidgetState extends State<TelaLoginWidget> {
                                       fontSize: 17.0,
                                     ),
                                 textAlign: TextAlign.start,
-                                validator: _model.textController2Validator
+                                validator: _model
+                                    .passwordTextControllerValidator
                                     .asValidator(context),
                               ),
                             ].divide(SizedBox(height: 40.0)),
@@ -309,7 +309,19 @@ class _TelaLoginWidgetState extends State<TelaLoginWidget> {
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          context.pushNamed('Tela_Principal');
+                          GoRouter.of(context).prepareAuthEvent();
+
+                          final user = await authManager.signInWithEmail(
+                            context,
+                            _model.emailTextController.text,
+                            _model.passwordTextController.text,
+                          );
+                          if (user == null) {
+                            return;
+                          }
+
+                          context.goNamedAuth(
+                              'Tela_Principal', context.mounted);
                         },
                         text: 'Entrar',
                         options: FFButtonOptions(

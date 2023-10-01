@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -38,8 +39,6 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -88,7 +87,25 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
                         height: 120.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).alternate,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: Image.network(
+                              currentUserPhoto,
+                            ).image,
+                          ),
                           shape: BoxShape.circle,
+                        ),
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          fillColor: Colors.transparent,
+                          icon: Icon(
+                            Icons.add_photo_alternate,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 35.0,
+                          ),
+                          onPressed: () {
+                            print('IconButton pressed ...');
+                          },
                         ),
                       ),
                     ),
@@ -115,7 +132,7 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
                                   ),
                             ),
                             Text(
-                              '[Nome do User]',
+                              currentUserUid,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -129,7 +146,7 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
                           ].divide(SizedBox(width: 4.5)),
                         ),
                         Text(
-                          '[Email do User]',
+                          currentUserEmail,
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
@@ -425,6 +442,52 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
                           ]
                               .divide(SizedBox(width: 10.0))
                               .around(SizedBox(width: 10.0)),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        GoRouter.of(context).prepareAuthEvent();
+                        await authManager.signOut();
+                        GoRouter.of(context).clearRedirectLocation();
+
+                        context.goNamedAuth('Tela_Inicial', context.mounted);
+                      },
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 1.0,
+                        child: Container(
+                          height: 75.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Icon(
+                                Icons.logout_rounded,
+                                color: FlutterFlowTheme.of(context).error,
+                                size: 40.0,
+                              ),
+                              Text(
+                                'Sair',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context).error,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ]
+                                .divide(SizedBox(width: 10.0))
+                                .around(SizedBox(width: 10.0)),
+                          ),
                         ),
                       ),
                     ),
