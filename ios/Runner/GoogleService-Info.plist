@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyCUIp0NYrdxU1wvMNvCMXENXL2Sj0oGOPQ</string>
+	<string>AIzaSyA1-CZGJtUEZnFYsj_brdXRhkqNAp8qRBs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>331626457458</string>
+	<string>1065339622421</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.mycompany.livinginbrazil</string>
 	<key>PROJECT_ID</key>
-	<string>living-in-brazil</string>
+	<string>lib-login-2182a</string>
 	<key>STORAGE_BUCKET</key>
-	<string>living-in-brazil.appspot.com</string>
+	<string>lib-login-2182a.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:331626457458:ios:b8c847adde542c598715eb</string>
+	<string>1:1065339622421:ios:439c2e466ed4b5cee8aa1c</string>
 </dict>
 </plist>

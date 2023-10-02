@@ -7,3 +7,5 @@ export '/pages/tela_login/tela_login_widget.dart' show TelaLoginWidget;
 export '/pages/tela_pesquisa/tela_pesquisa_widget.dart' show TelaPesquisaWidget;
 export '/pages/tela_restaurantes/tela_restaurantes_widget.dart'
     show TelaRestaurantesWidget;
+export '/forgot_password01/forgot_password01_widget.dart'
+    show ForgotPassword01Widget;

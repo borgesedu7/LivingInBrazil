@@ -78,34 +78,36 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Material(
-                      color: Colors.transparent,
-                      elevation: 5.0,
-                      shape: const CircleBorder(),
-                      child: Container(
-                        width: 120.0,
-                        height: 120.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: Image.network(
-                              currentUserPhoto,
-                            ).image,
+                    AuthUserStreamWidget(
+                      builder: (context) => Material(
+                        color: Colors.transparent,
+                        elevation: 5.0,
+                        shape: const CircleBorder(),
+                        child: Container(
+                          width: 120.0,
+                          height: 120.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: Image.network(
+                                currentUserPhoto,
+                              ).image,
+                            ),
+                            shape: BoxShape.circle,
                           ),
-                          shape: BoxShape.circle,
-                        ),
-                        child: FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          fillColor: Colors.transparent,
-                          icon: Icon(
-                            Icons.add_photo_alternate,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 35.0,
+                          child: FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            fillColor: Colors.transparent,
+                            icon: Icon(
+                              Icons.add_photo_alternate,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 35.0,
+                            ),
+                            onPressed: () {
+                              print('IconButton pressed ...');
+                            },
                           ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
-                          },
                         ),
                       ),
                     ),
@@ -131,17 +133,19 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
                                     fontWeight: FontWeight.w600,
                                   ),
                             ),
-                            Text(
-                              currentUserUid,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Lato',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                            AuthUserStreamWidget(
+                              builder: (context) => Text(
+                                currentUserDisplayName,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Lato',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
                             ),
                           ].divide(SizedBox(width: 4.5)),
                         ),
@@ -302,71 +306,106 @@ class _TelaPrincipalWidgetState extends State<TelaPrincipalWidget> {
                         ),
                       ),
                     ),
-                    Material(
-                      color: Colors.transparent,
-                      elevation: 1.0,
-                      child: Container(
-                        height: 75.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.settings_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 40.0,
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        if (currentUserEmail.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Email required!',
+                              ),
                             ),
-                            Text(
-                              '[Alguma opção]',
-                              style: FlutterFlowTheme.of(context)
-                                  .titleMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ]
-                              .divide(SizedBox(width: 10.0))
-                              .around(SizedBox(width: 10.0)),
+                          );
+                          return;
+                        }
+
+                        await authManager.updateEmail(
+                          email: currentUserEmail,
+                          context: context,
+                        );
+                        setState(() {});
+                      },
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 1.0,
+                        child: Container(
+                          height: 75.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Icon(
+                                Icons.settings_outlined,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 40.0,
+                              ),
+                              Text(
+                                'Mudar Email',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ]
+                                .divide(SizedBox(width: 10.0))
+                                .around(SizedBox(width: 10.0)),
+                          ),
                         ),
                       ),
                     ),
-                    Material(
-                      color: Colors.transparent,
-                      elevation: 1.0,
-                      child: Container(
-                        height: 75.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.settings_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 40.0,
-                            ),
-                            Text(
-                              '[Alguma opção]',
-                              style: FlutterFlowTheme.of(context)
-                                  .titleMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ]
-                              .divide(SizedBox(width: 10.0))
-                              .around(SizedBox(width: 10.0)),
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        await authManager.deleteUser(context);
+                        await currentUserReference!.delete();
+
+                        context.pushNamed('Tela_Inicial');
+                      },
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 1.0,
+                        child: Container(
+                          height: 75.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Icon(
+                                Icons.settings_outlined,
+                                color: FlutterFlowTheme.of(context).error,
+                                size: 40.0,
+                              ),
+                              Text(
+                                'Deletar Usuario',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context).error,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ]
+                                .divide(SizedBox(width: 10.0))
+                                .around(SizedBox(width: 10.0)),
+                          ),
                         ),
                       ),
                     ),

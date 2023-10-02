@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -421,6 +422,13 @@ class _TelaCadastroWidgetState extends State<TelaCadastroWidget> {
                           if (user == null) {
                             return;
                           }
+
+                          await UserRecord.collection
+                              .doc(user.uid)
+                              .update(createUserRecordData(
+                                email: _model.emailTextController.text,
+                                displayName: _model.textController.text,
+                              ));
 
                           context.goNamedAuth(
                               'Tela_Principal', context.mounted);
